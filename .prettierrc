@@ -2,7 +2,10 @@
   "tabWidth": 2,
   "useTabs": false,
   "printWidth": 80,
-  "singleQuote": false,
+  "singleQuote": true,
   "proseWrap": "always",
-  "singleAttributePerLine": true
+  "singleAttributePerLine": true,
+  "trailingComma": "all",
+  "arrowParens": "always",
+  "jsxSingleQuote": false
 }
