@@ -7,6 +7,7 @@ import { Download, ImageIcon, MessageSquare } from 'lucide-react';
 import { Form, FormControl, FormField, FormItem } from '@/components/ui/form';
 import {
   Select,
+  SelectContent,
   SelectItem,
   SelectTrigger,
   SelectValue,
@@ -19,7 +20,6 @@ import { Heading } from '@/components/Heading';
 import Image from 'next/image';
 import { Input } from '@/components/ui/input';
 import Loader from '@/components/Loader';
-import { SelectContent } from '@radix-ui/react-select';
 import axios from 'axios';
 import { cn } from '@/lib/utils';
 import { useForm } from 'react-hook-form';
@@ -92,11 +92,12 @@ const ImagePage = () => {
                 control={form.control}
                 name="amount"
                 render={({ field }) => (
-                  <FormItem className="col-span-12 lg:col-span-2 bg-white">
+                  <FormItem className="col-span-12 lg:col-span-2">
                     <Select
                       onValueChange={field.onChange}
                       disabled={isLoading}
-                      {...field}
+                      value={field.value}
+                      defaultValue={field.value}
                     >
                       <FormControl>
                         <SelectTrigger>
@@ -121,11 +122,12 @@ const ImagePage = () => {
                 control={form.control}
                 name="resolution"
                 render={({ field }) => (
-                  <FormItem className="col-span-12 lg:col-span-2 bg-white">
+                  <FormItem className="col-span-12 lg:col-span-2">
                     <Select
                       onValueChange={field.onChange}
                       disabled={isLoading}
-                      {...field}
+                      value={field.value}
+                      defaultValue={field.value}
                     >
                       <FormControl>
                         <SelectTrigger>
