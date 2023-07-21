@@ -27,7 +27,7 @@ import { useRouter } from 'next/navigation';
 import { useState } from 'react';
 import { zodResolver } from '@hookform/resolvers/zod';
 
-const ConversationPage = () => {
+const ImagePage = () => {
   const router = useRouter();
   const [images, setImages] = useState<string[]>([]);
 
@@ -92,7 +92,7 @@ const ConversationPage = () => {
                 control={form.control}
                 name="amount"
                 render={({ field }) => (
-                  <FormItem className="col-span-12 lg:col-span-2">
+                  <FormItem className="col-span-12 lg:col-span-2 bg-white">
                     <Select
                       onValueChange={field.onChange}
                       disabled={isLoading}
@@ -121,7 +121,7 @@ const ConversationPage = () => {
                 control={form.control}
                 name="resolution"
                 render={({ field }) => (
-                  <FormItem className="col-span-12 lg:col-span-2">
+                  <FormItem className="col-span-12 lg:col-span-2 bg-white">
                     <Select
                       onValueChange={field.onChange}
                       disabled={isLoading}
@@ -196,4 +196,4 @@ const ConversationPage = () => {
   );
 };
 
-export default ConversationPage;
+export default ImagePage;
