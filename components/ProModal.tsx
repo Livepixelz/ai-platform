@@ -12,6 +12,7 @@ import { Button } from '@/components/ui/button';
 import { Card } from './ui/card';
 import axios from 'axios';
 import { cn } from '@/lib/utils';
+import toast from 'react-hot-toast';
 import { TOOLS as tools } from '@/constants';
 import { useProModal } from '@/hooks/use-pro-modal';
 import { useState } from 'react';
@@ -27,6 +28,7 @@ const ProModal = () => {
       window.location.href = response.data.url;
     } catch (error) {
       console.log('[STRIPE_CLIENT_ERROR]', error);
+      toast.error('Something went wrong');
     } finally {
       setLoading(false);
     }
@@ -68,6 +70,7 @@ const ProModal = () => {
         </div>
         <DialogFooter>
           <Button
+            disabled={loading}
             onClick={onSubscribe}
             size="lg"
             variant="premium"
