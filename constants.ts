@@ -20,8 +20,8 @@ export const TOOLS = [
   {
     label: 'Video Generation',
     icon: VideoIcon,
-    color: 'text-orange-500',
-    bgColor: 'bg-orange-500/10',
+    color: 'text-orange-700',
+    bgColor: 'bg-orange-700/10',
     href: '/video',
   },
   {
@@ -34,8 +34,8 @@ export const TOOLS = [
   {
     label: 'Code Generation',
     icon: Code,
-    color: 'text-green-500',
-    bgColor: 'bg-green-500/10',
+    color: 'text-green-700',
+    bgColor: 'bg-green-700/10',
     href: '/code',
   },
 ];
