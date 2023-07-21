@@ -13,10 +13,14 @@ import { Music } from 'lucide-react';
 import axios from 'axios';
 import { formSchema } from './constants';
 import { useForm } from 'react-hook-form';
+import { useProModal } from '@/hooks/use-pro-modal';
+import { useRouter } from 'next/navigation';
 import { useState } from 'react';
 import { zodResolver } from '@hookform/resolvers/zod';
 
 const MusicPage = () => {
+  const proModal = useProModal();
+  const router = useRouter();
   const [music, setMusic] = useState<string>();
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
@@ -35,9 +39,11 @@ const MusicPage = () => {
       setMusic(response.data.audio);
       form.reset();
     } catch (error: any) {
-      console.log(error);
+      if (error?.response?.status === 403) {
+        proModal.onOpen();
+      }
     } finally {
-      form.reset();
+      router.refresh();
     }
   };
 

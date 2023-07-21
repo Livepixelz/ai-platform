@@ -1,9 +1,13 @@
-const Logo = () => {
+interface LogoProps {
+  className?: string;
+}
+const Logo = ({ className }: LogoProps) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
       version="1.1"
       viewBox="0 0 240 240"
+      className={className}
     >
       <path
         style={{ fill: 'currentColor' }}

@@ -19,6 +19,7 @@ import axios from 'axios';
 import { cn } from '@/lib/utils';
 import { formSchema } from '@/app/(dashboard)/(routes)/code/constants';
 import { useForm } from 'react-hook-form';
+import { useProModal } from '@/hooks/use-pro-modal';
 import { useRouter } from 'next/navigation';
 import { useState } from 'react';
 import { zodResolver } from '@hookform/resolvers/zod';
@@ -26,6 +27,7 @@ import { zodResolver } from '@hookform/resolvers/zod';
 const font = Nunito({ weight: '600', subsets: ['latin'] });
 
 const CodePage = () => {
+  const proModal = useProModal();
   const router = useRouter();
   const [messages, setMessages] = useState<ChatCompletionRequestMessage[]>([]);
   const form = useForm<z.infer<typeof formSchema>>({
@@ -53,9 +55,11 @@ const CodePage = () => {
 
       form.reset();
     } catch (error: any) {
-      console.log(error);
+      if (error?.response?.status === 403) {
+        proModal.onOpen();
+      }
     } finally {
-      form.reset();
+      router.refresh();
     }
   };
 

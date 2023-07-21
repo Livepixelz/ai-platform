@@ -23,11 +23,13 @@ import Loader from '@/components/Loader';
 import axios from 'axios';
 import { cn } from '@/lib/utils';
 import { useForm } from 'react-hook-form';
+import { useProModal } from '@/hooks/use-pro-modal';
 import { useRouter } from 'next/navigation';
 import { useState } from 'react';
 import { zodResolver } from '@hookform/resolvers/zod';
 
 const ImagePage = () => {
+  const proModal = useProModal();
   const router = useRouter();
   const [images, setImages] = useState<string[]>([]);
 
@@ -51,9 +53,11 @@ const ImagePage = () => {
       setImages(urls);
       form.reset();
     } catch (error: any) {
-      console.log(error);
+      if (error?.response?.status === 403) {
+        proModal.onOpen();
+      }
     } finally {
-      form.reset();
+      router.refresh();
     }
   };
 
